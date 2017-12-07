@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+	<!-- 引入spring的配置文件 -->
+	<import resource="applicationSpring.xml"/>
+	<!-- 引入springhibernate的配置文件  -->
+	<import resource="applicationHibernate.xml"/>
+	<!-- 引入shiro配置文件 -->
+	<import resource="applicationShiro.xml"/> 
+	
+</beans>
