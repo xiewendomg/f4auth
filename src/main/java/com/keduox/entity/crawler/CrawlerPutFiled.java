@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.keduox.entity.base.BaseEntity;
 @Entity
@@ -46,5 +47,6 @@ public class CrawlerPutFiled extends BaseEntity {
 	public void setXpathSelector(String xpathSelector) {
 		this.xpathSelector = xpathSelector;
 	}
-	
+	@Transient//查询时需要修改的字段
+	private final String[] QUERY_FILTER={"xpathSelector","nameSelector"};
 }

@@ -96,7 +96,7 @@ public interface BaseDao<T, ID extends Serializable> {
      * @param objs
      * @return
      */
-    Object queryByTaskId(String fieldName, Object fieldValue);
+    Object queryByTaskId(Class cls,String fieldName,Object fieldValue,String[] objs);
     /**
      * 通过外键返回List集合
      * @param cls

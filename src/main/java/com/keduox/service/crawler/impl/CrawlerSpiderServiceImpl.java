@@ -14,8 +14,8 @@ public class CrawlerSpiderServiceImpl extends BaseServiceImpl implements Crawler
 	private CrawlerSpiderDao crawlerSpiderDao;
 	@Override
 	public CrawlerSpider queryByTaskId(Integer taskId) {
-		
-		return  (CrawlerSpider) crawlerSpiderDao.queryByTaskId("crawlerTask.id", taskId);
+		return null;
+		//return  (CrawlerSpider) crawlerSpiderDao.queryByTaskId("crawlerTask.id", taskId);
 	}
 
 }

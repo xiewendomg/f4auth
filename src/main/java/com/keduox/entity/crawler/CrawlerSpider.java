@@ -68,7 +68,7 @@ public class CrawlerSpider extends BaseEntity{
 	@Transient//修改时不需要修改的字段
 	private final String[] UPDATE_FILTER={"createDatetime"};
 	
-	@Transient//查询时不需要修改的字段
+	@Transient//查询时需要修改的字段
 	private final String[] QUERY_FILTER={"scheduler","download","url","thread","runStatus"};
 
 	@Override

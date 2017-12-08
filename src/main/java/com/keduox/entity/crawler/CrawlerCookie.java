@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.keduox.entity.base.BaseEntity;
 @SuppressWarnings("serial")
@@ -37,5 +38,6 @@ public class CrawlerCookie extends BaseEntity {
 	public void setCrawlerSite(CrawlerSite crawlerSite) {
 		this.crawlerSite = crawlerSite;
 	}
+	@Transient
 	public final String[] QUERY_FILTER=new String[]{"cookieName","cookieValue"};
 }

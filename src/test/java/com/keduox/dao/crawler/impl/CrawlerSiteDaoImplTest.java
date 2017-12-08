@@ -5,7 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.keduox.dao.base.BaseTest;
 import com.keduox.entity.crawler.CrawlerCookie;
+import com.keduox.entity.crawler.CrawlerCookieVO;
 import com.keduox.entity.crawler.CrawlerSite;
+import com.keduox.entity.crawler.CrawlerSiteVO;
 import com.keduox.entity.crawler.CrawlerSpider;
 import com.keduox.service.crawler.CrawlerSiteService;
 import com.keduox.util.ClassUtil;
@@ -15,12 +17,7 @@ public class CrawlerSiteDaoImplTest extends BaseTest{
 	private CrawlerSiteService crawlerSpiderService;
 	@Test
 	public void test() {
-		CrawlerSite f=crawlerSpiderService.queryByTaskId(1);
-		System.out.println(f.getCrawlerCookies());
-		for(CrawlerCookie d:f.getCrawlerCookies()){
-			System.out.println(d.getCookieName());
-		}
-		
+		CrawlerSiteVO f=crawlerSpiderService.queryByTaskId(1);		
 	}
 
 	@Test
