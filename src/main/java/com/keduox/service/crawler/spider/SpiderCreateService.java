@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.keduox.entity.crawler.CrawlerCookieVO;
 import com.keduox.entity.crawler.CrawlerHeaderVO;
 import com.keduox.entity.crawler.CrawlerSiteVO;
-import com.keduox.entity.crawler.CrawlerSpiderVO;
+import com.keduox.entity.crawler.CrawlerSpider;
 import com.keduox.service.crawler.CrawlerSiteService;
 import com.keduox.service.crawler.CrawlerSpiderService;
 import com.keduox.util.crawler.SpiderCaseUtil;
@@ -34,7 +34,7 @@ public class SpiderCreateService {
 		}else{
 		for(Integer taskId:taskIds){
 				SpiderPageProcessor spiderPageProcessor =new SpiderPageProcessor();
-				CrawlerSpiderVO crawlerSpider=crawlerSpiderService.queryByTaskId(taskId);	
+				CrawlerSpider crawlerSpider=crawlerSpiderService.queryByTaskId(taskId);	
 				CrawlerSiteVO crawlerSite=crawlerSiteService.queryByTaskId(taskId);	               
 				//site 参数
 				Integer sleepTime=crawlerSite.getSleepTime();

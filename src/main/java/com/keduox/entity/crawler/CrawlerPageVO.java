@@ -1,7 +1,7 @@
 package com.keduox.entity.crawler;
 
 import java.util.List;
-public class CrawlerPageVO{
+public class CrawlerPageVO {
 	private String url;
 	private List<CrawlerTargetRequest> crawlerTargetRequest;
 	private List<CrawlerPutFiled> crawlerPutFileds;
@@ -23,5 +23,6 @@ public class CrawlerPageVO{
 	public void setCrawlerPutFileds(List<CrawlerPutFiled> crawlerPutFileds) {
 		this.crawlerPutFileds = crawlerPutFileds;
 	}
+	
 	
 } 

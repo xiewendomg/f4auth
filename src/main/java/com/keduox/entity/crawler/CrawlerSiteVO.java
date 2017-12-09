@@ -66,5 +66,11 @@ public class CrawlerSiteVO {
 	public void setCrawlerCookies(List<CrawlerCookieVO> crawlerCookies) {
 		this.crawlerCookies = crawlerCookies;
 	}
+	@Override
+	public String toString() {
+		return "CrawlerSiteVO [sleepTime=" + sleepTime + ", charset=" + charset + ", userAgent=" + userAgent
+				+ ", domain=" + domain + ", timeOut=" + timeOut + ", retryTime=" + retryTime + ", cycleRetryTime="
+				+ cycleRetryTime + ", crawlerHeaders=" + crawlerHeaders + ", crawlerCookies=" + crawlerCookies + "]";
+	}
 	
 }

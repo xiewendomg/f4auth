@@ -45,7 +45,7 @@ public class CrawlerSite extends BaseEntity{
 	private Integer retryTime;
     @Column(name="cycle_retry_time")
 	private Integer cycleRetryTime;
-    @OneToMany(mappedBy="crawlerSite")   
+    @OneToMany(mappedBy="crawlerSite")
 	private Set<CrawlerHeader> crawlerHeaders;
     @OneToMany(mappedBy="crawlerSite")
 	private Set<CrawlerCookie> crawlerCookies;
@@ -106,5 +106,5 @@ public class CrawlerSite extends BaseEntity{
 	
 	@Transient//查询时需要的字段
 	private final String[] QUERY_FILTER={"sleepTime","userAgent","charset","do"
-			+ "main","timeOut","retryTime","cycleRetryTime","crawlerHeaders","crawlerCookies"};
+			+ "main","timeOut","retryTime","cycleRetryTime","id"};
 }

@@ -17,12 +17,7 @@ public class CrawlerSiteDaoImplTest extends BaseTest{
 	private CrawlerSiteService crawlerSpiderService;
 	@Test
 	public void test() {
-		CrawlerSiteVO f=crawlerSpiderService.queryByTaskId(1);
-		System.out.println(f.getCrawlerCookies());
-		for(CrawlerCookieVO d:f.getCrawlerCookies()){
-			System.out.println(d.getCookieName());
-		}
-		
+		CrawlerSiteVO f=crawlerSpiderService.queryByTaskId(1);		
 	}
 
 	@Test

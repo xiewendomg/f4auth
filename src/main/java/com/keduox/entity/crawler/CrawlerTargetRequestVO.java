@@ -1,7 +1,6 @@
 package com.keduox.entity.crawler;
 
-public class CrawlerTargetRequestVO  {
-
+public class CrawlerTargetRequestVO{
 	private String xpathSelector;
 
 	public String getXpathSelector() {

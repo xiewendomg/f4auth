@@ -27,23 +27,29 @@ public class CrawlerSiteServiceImpl extends BaseServiceImpl implements CrawlerSi
 	private CrawlerCookieDao crawlerCookieDao;
 	@Autowired
 	private CrawlerHeaderDao crawlerHeaderDao;
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public CrawlerSiteVO queryByTaskId(Integer taskId) {
 		CrawlerSiteVO csv=new CrawlerSiteVO();
-		CrawlerSite cs=(CrawlerSite)crawlerSiteDao.queryByTaskId(CrawlerSite.class,"crawlerTask.id", taskId,(String[])ReflectUtil.getClassByProperty(CrawlerSite.class, FixedFieldUtil.QUERY_FILTER));
-		List<CrawlerCookieVO> ccv= crawlerCookieDao.queryByForeignKey(CrawlerCookieVO.class,"CrawlerSite.id", cs.getId(),(String[])ReflectUtil.getClassByProperty(CrawlerCookie.class, FixedFieldUtil.QUERY_FILTER));
-		List<CrawlerHeaderVO> chv= crawlerHeaderDao.queryByForeignKey(CrawlerHeaderVO.class,"CrawlerSite.id", cs.getId(),(String[])ReflectUtil.getClassByProperty(CrawlerHeader.class, FixedFieldUtil.QUERY_FILTER));
+		CrawlerSite cs=(CrawlerSite) crawlerSiteDao.queryByTaskId(CrawlerSite.class,"crawlerTask.id", taskId,(String[])ReflectUtil.getClassByProperty(CrawlerSite.class, FixedFieldUtil.QUERY_FILTER));
+		List<CrawlerCookieVO> ccvs=crawlerCookieDao.queryByForeignKey(CrawlerCookieVO.class, "crawlerSite.id", cs.getId(), (String[])ReflectUtil.getClassByProperty(CrawlerCookie.class, FixedFieldUtil.QUERY_FILTER));
+		List<CrawlerHeaderVO> chvs=crawlerHeaderDao.queryByForeignKey(CrawlerHeaderVO.class, "crawlerSite.id", cs.getId(), (String[])ReflectUtil.getClassByProperty(CrawlerHeader.class, FixedFieldUtil.QUERY_FILTER));
 		csv.setCharset(cs.getCharset());
-		csv.setCrawlerCookies(ccv);
+		csv.setCrawlerCookies(ccvs);
+		csv.setCrawlerHeaders(chvs);
 		csv.setCycleRetryTime(cs.getCycleRetryTime());
 		csv.setDomain(cs.getDomain());
 		csv.setRetryTime(cs.getRetryTime());
 		csv.setSleepTime(cs.getSleepTime());
 		csv.setTimeOut(cs.getTimeOut());
 		csv.setUserAgent(cs.getUserAgent());
-		csv.setCrawlerHeaders(chv);
-		return  csv;		 
+		return   csv;		 
+	}
+	@Override
+	public CrawlerSite queryByTaskId1(Integer taskId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
    

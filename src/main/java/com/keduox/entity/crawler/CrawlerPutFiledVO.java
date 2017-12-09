@@ -1,7 +1,6 @@
 package com.keduox.entity.crawler;
 
-public class CrawlerPutFiledVO {
-
+public class CrawlerPutFiledVO  {
 	private String xpathSelector;
 	private String nameSelector;
 	public String getXpathSelector() {

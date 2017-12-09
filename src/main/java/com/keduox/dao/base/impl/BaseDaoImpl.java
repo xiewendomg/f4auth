@@ -10,6 +10,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.annotations.ManyToAny;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Projection;
@@ -23,6 +24,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Repository;
 
 import com.keduox.dao.base.BaseDao;
+import com.keduox.entity.crawler.CrawlerCookie;
 import com.keduox.entity.crawler.CrawlerSpider;
 import com.keduox.util.FixedFieldUtil;
 import com.keduox.util.HibernateTypeEnum;
@@ -214,6 +216,7 @@ public class BaseDaoImpl<T, ID extends Serializable>   implements BaseDao<T, ID>
 
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override//根据taskId返回对象
 	public T queryByTaskId(Class cls,String fieldName,Object fieldValue,String[] objs) {
 		Criteria criteria=this.getSession().createCriteria(getEntityClass());
 		ProjectionList   proList   =   Projections.projectionList();
@@ -227,14 +230,13 @@ public class BaseDaoImpl<T, ID extends Serializable>   implements BaseDao<T, ID>
 		return  (T)criteria.uniqueResult();
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override//根据外键返回对象集合lIST
-	public List<T> queryByForeignKey(Class cls,String fieldName,Object fieldValue,String[] objs) {
-		Criteria criteria=this.getSession().createCriteria(cls);	
+	public List queryByForeignKey(Class cls,String fieldName,Object fieldValue,String[] objs) {
+		Criteria criteria=this.getSession().createCriteria(getEntityClass());	
 		ProjectionList   proList   =   Projections.projectionList();
 		for(String obj:objs){
-			proList.add(Projections.groupProperty(obj),obj);
-		}		
+			proList.add(Projections.property(obj),obj);
+		}	
 		criteria.add(Restrictions.eq(fieldName,fieldValue));						
 		criteria.setProjection(proList);
 		criteria.setResultTransformer(Transformers.aliasToBean(cls));

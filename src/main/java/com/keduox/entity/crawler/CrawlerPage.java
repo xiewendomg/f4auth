@@ -42,5 +42,5 @@ public class CrawlerPage extends BaseEntity{
 	private final String[] UPDATE_FILTER={"createDatetime"};
 	
 	@Transient//查询时需要修改的字段
-	private final String[] QUERY_FILTER={"id","url"};
+	private final String[] QUERY_FILTER={"url","id"};
 } 

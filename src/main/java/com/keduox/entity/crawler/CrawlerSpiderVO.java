@@ -1,6 +1,7 @@
 package com.keduox.entity.crawler;
 
 public class CrawlerSpiderVO {
+
 	private String url;
 	private Integer thread;
 	private Integer runStatus;

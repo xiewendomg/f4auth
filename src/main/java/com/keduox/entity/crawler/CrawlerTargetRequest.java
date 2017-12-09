@@ -32,6 +32,6 @@ public class CrawlerTargetRequest extends BaseEntity {
 		this.xpathSelector = xpathSelector;
 	}
 	@Transient//查询时需要修改的字段
-	private final String[] QUERY_FILTER={"xpathSelector"};
+	private final String[] QUERY_FILTER={"xpathSelector","id"};
 	
 }
