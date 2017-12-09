@@ -214,29 +214,30 @@ public class BaseDaoImpl<T, ID extends Serializable>   implements BaseDao<T, ID>
 
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@Override//根据taskId返回对象
-	public T queryByTaskId(String fieldName,Object fieldValue) {
+	public T queryByTaskId(Class cls,String fieldName,Object fieldValue,String[] objs) {
 		Criteria criteria=this.getSession().createCriteria(getEntityClass());
-//		ProjectionList   proList   =   Projections.projectionList();
+		ProjectionList   proList   =   Projections.projectionList();
 		//proList.add(Projections.property(obj),obj);后一个obj是as的对象 ，前一个是实体内的属性名不是数据库字段
-		/*for(String obj:objs){
+		for(String obj:objs){
 			proList.add(Projections.property(obj),obj);
-		}*/
+		}
 		criteria.add(Restrictions.eq(fieldName,fieldValue));
-//		criteria.setProjection(proList);
-//		criteria.setResultTransformer(Transformers.aliasToBean(cls));
+		criteria.setProjection(proList);
+		criteria.setResultTransformer(Transformers.aliasToBean(cls));
 		return  (T)criteria.uniqueResult();
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override//根据外键返回对象集合lIST
-	public List queryByForeignKey(Class cls,String fieldName,Object fieldValue,String[] objs) {
+	public List<T> queryByForeignKey(Class cls,String fieldName,Object fieldValue,String[] objs) {
 		Criteria criteria=this.getSession().createCriteria(cls);	
-		/*ProjectionList   proList   =   Projections.projectionList();
+		ProjectionList   proList   =   Projections.projectionList();
 		for(String obj:objs){
-			proList.add(Projections.groupProperty(obj));
-		}*/		
+			proList.add(Projections.groupProperty(obj),obj);
+		}		
 		criteria.add(Restrictions.eq(fieldName,fieldValue));						
-		//criteria.setProjection(proList);
+		criteria.setProjection(proList);
+		criteria.setResultTransformer(Transformers.aliasToBean(cls));
 		return  criteria.list();
 	}
 }

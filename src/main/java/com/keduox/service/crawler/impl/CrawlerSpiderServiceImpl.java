@@ -4,18 +4,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.keduox.dao.crawler.CrawlerSpiderDao;
+import com.keduox.entity.crawler.CrawlerHeader;
 import com.keduox.entity.crawler.CrawlerSpider;
+import com.keduox.entity.crawler.CrawlerSpiderVO;
 import com.keduox.service.base.impl.BaseServiceImpl;
 import com.keduox.service.crawler.CrawlerSpiderService;
+import com.keduox.util.FixedFieldUtil;
+import com.keduox.util.ReflectUtil;
 @Service
 public class CrawlerSpiderServiceImpl extends BaseServiceImpl implements CrawlerSpiderService {
 
 	@Autowired
 	private CrawlerSpiderDao crawlerSpiderDao;
 	@Override
-	public CrawlerSpider queryByTaskId(Integer taskId) {
+	public CrawlerSpiderVO queryByTaskId(Integer taskId) {
 		
-		return  (CrawlerSpider) crawlerSpiderDao.queryByTaskId("crawlerTask.id", taskId);
+		return  (CrawlerSpiderVO) crawlerSpiderDao.queryByTaskId(CrawlerSpiderVO.class,"crawlerTask.id", taskId,(String[])ReflectUtil.getClassByProperty(CrawlerHeader.class, FixedFieldUtil.QUERY_FILTER));
 	}
 
 }

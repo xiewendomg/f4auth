@@ -1,6 +1,6 @@
 package com.keduox.entity.crawler;
 
-public class CrawlerCookieVO {
+public class CrawlerCookieVO{
 	private String cookieName;
 	private String cookieValue;
 	public String getCookieName() {

@@ -1,6 +1,6 @@
 package com.keduox.entity.crawler;
 
-public class CrawlerHeaderVO {
+public class CrawlerHeaderVO{
 	private String headerName;
 	private String headerValue;
 	public String getHeaderName() {

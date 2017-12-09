@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.keduox.dao.crawler.CrawlerPageDao;
 import com.keduox.entity.crawler.CrawlerPage;
+import com.keduox.entity.crawler.CrawlerPageVO;
 import com.keduox.service.base.impl.BaseServiceImpl;
 import com.keduox.service.crawler.CrawlerPageService;
 import com.keduox.util.FixedFieldUtil;
@@ -18,7 +19,7 @@ public class CrawlerPageServiceImpl extends BaseServiceImpl implements CrawlerPa
 	private CrawlerPageDao crawlerPageDao;
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<CrawlerPage> queryByForeignKey(Integer taskId) {
+	public List<CrawlerPageVO> queryByForeignKey(Integer taskId) {
 		return  crawlerPageDao.queryByForeignKey(CrawlerPage.class, "crawlerTask.id", taskId, (String[]) ReflectUtil.getClassByProperty(CrawlerPage.class, FixedFieldUtil.QUERY_FILTER));
 	}
 
