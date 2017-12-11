@@ -1,14 +1,13 @@
 package com.keduox.service.crawler.spider;
 
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.keduox.entity.crawler.CrawlerPage;
-import com.keduox.entity.crawler.CrawlerPutFiled;
-import com.keduox.entity.crawler.CrawlerTargetRequest;
+import com.keduox.entity.crawler.CrawlerPageVO;
+import com.keduox.entity.crawler.CrawlerPutFiledVO;
+import com.keduox.entity.crawler.CrawlerTargetRequestVO;
 import com.keduox.service.crawler.CrawlerPageService;
 
 import us.codecraft.webmagic.Page;
@@ -38,17 +37,17 @@ public class SpiderPageProcessor implements PageProcessor{
 	@Override
 	public void process(Page page) {		
 		System.out.println("开始。。。。。。。。。");
-		List<CrawlerPage> crawlerPages=crawlerPageService.queryByForeignKey(taskId);
-		for(CrawlerPage crawlerPage:crawlerPages){		   			
+		List<CrawlerPageVO> crawlerPages=crawlerPageService.queryByForeignKey(taskId);
+		for(CrawlerPageVO crawlerPage:crawlerPages){		   			
 				if(page.getUrl().regex(crawlerPage.getUrl()).match()) {
-					Set<CrawlerTargetRequest> crawlerTargetRequests=crawlerPage.getCrawlerTargetRequest();
-					Set<CrawlerPutFiled> crawlerPutFileds=crawlerPage.getCrawlerPutFileds();
+					List<CrawlerTargetRequestVO> crawlerTargetRequests=crawlerPage.getCrawlerTargetRequest();
+					List<CrawlerPutFiledVO> crawlerPutFileds=crawlerPage.getCrawlerPutFileds();
 					if(crawlerTargetRequests!=null){
-						for(CrawlerTargetRequest crawlerTargetRequest:crawlerTargetRequests)
+						for(CrawlerTargetRequestVO crawlerTargetRequest:crawlerTargetRequests)
 							page.addTargetRequests(page.getHtml().xpath(crawlerTargetRequest.getXpathSelector()).links().all());	
 					}
 					if(crawlerPutFileds!=null){
-						for(CrawlerPutFiled crawlerPutFiled:crawlerPutFileds)
+						for(CrawlerPutFiledVO crawlerPutFiled:crawlerPutFileds)
 						    page.putField(crawlerPutFiled.getNameSelector(), crawlerPutFiled.getXpathSelector());	
 					}					
                     break;				
